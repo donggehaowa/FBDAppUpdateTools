@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "8.0"
 
   s.source       = { :git => "https://github.com/donggehaowa/FBDAppUpdateTools.git", :tag => "#{s.version}" }
-  s.source_files  = "FBDAppUpdateToolsClass", "FBDAppUpdateToolsClass/*.{h,m}"
+  s.source_files  = "FBDAppUpdateToolsClass/*.{h,m}"
   # s.public_header_files = "Classes/**/*.h"
 
 
