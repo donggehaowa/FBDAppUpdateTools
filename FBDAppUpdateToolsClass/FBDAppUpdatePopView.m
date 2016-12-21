@@ -6,8 +6,8 @@
 //  Copyright © 2016年 MedSci. All rights reserved.
 //
 #define BottomButtonHeight   40
-#define ScreenW    [UIScreen mainScreen].bounds.size.width
-#define ScreenH    [UIScreen mainScreen].bounds.size.height
+#define ScreenWW    [UIScreen mainScreen].bounds.size.width
+#define ScreenHH    [UIScreen mainScreen].bounds.size.height
 #define POPPaddingLR 40.f
 #define POPPaddingTop 100.f
 
@@ -69,7 +69,7 @@
 -(void)createUpdateUI
 {
     _popView=[UIView new];
-    _popView.frame=CGRectMake(POPPaddingLR, POPPaddingTop, ScreenW-POPPaddingLR*2, ScreenH-2*POPPaddingTop);
+    _popView.frame=CGRectMake(POPPaddingLR, POPPaddingTop, ScreenWW-POPPaddingLR*2, ScreenHH-2*POPPaddingTop);
     _popView.backgroundColor=[UIColor brownColor];
     CGFloat popViewWidth=CGRectGetWidth(_popView.frame);
     CGFloat popViewHeigth=CGRectGetHeight(_popView.frame);
@@ -162,16 +162,16 @@
 
 
 #pragma mark - 添加背景视图
-- (void) addBackView:(UIView *) superView
+- (void) addBackView:(UIView *) msuperView
 {
     _backView = [[UIView alloc] init];
-    _backView.frame = superView.bounds;
+    _backView.frame = msuperView.bounds;
     _backView.backgroundColor = [UIColor blackColor];
     _backView.alpha = 0.4;
     
     //UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBg)];
     //[_backView addGestureRecognizer:tap];
-    [superView addSubview:_backView];
+    [msuperView addSubview:_backView];
     
 }
 
