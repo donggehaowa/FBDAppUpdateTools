@@ -17,6 +17,7 @@ Pod::Spec.new do |s|
 
   s.name         = "FBDAppUpdateTools"
   s.version      = "0.1"
+  s.summary      = "FBDAppUpdateTools 是根据自己的APP在AppStore的版本信息和本地版本信息进行匹配后作出让用户去AppStore进行相关的更细的界面，目的为了更好的节省开发时间！解释权归冯宝东所有，如果涉及到版权信息，联系我删除代码 "
   s.homepage     = "https://github.com/donggehaowa/FBDAppUpdateTools"
 
   # This description is used to generate tags and improve search results.
