@@ -65,7 +65,16 @@ static FBDAppUpdateVersionTool *appSinTan;
             appStorePath=self.m_appStorePath;
         }
         
-        [[MyRequest defaultRequest] getRequestWithTheType:appVersionURL theContent:nil successBlock:^(id obj) {
+        
+        NSURLRequest* _myRequest=[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:appVersionURL] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
+        NSURLSession* _mySession=[NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue: [NSOperationQueue mainQueue]];
+        NSURLSessionDataTask*_myTask=[_mySession dataTaskWithRequest:_myRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            
+            NSDictionary* json = [NSJSONSerialization
+                                  JSONObjectWithData:data
+                                  options:kNilOptions
+                                  error:&error];
+            id obj=json;
             NSArray *allArray=[obj objectForKey:resultsKey];
             NSDictionary* appVersionDic=[allArray firstObject];
             AppVersionModel*resultVersionModel=[[AppVersionModel alloc]initWithDictionary:appVersionDic];
@@ -79,12 +88,6 @@ static FBDAppUpdateVersionTool *appSinTan;
             NSDictionary *infoDic=[[NSBundle mainBundle]infoDictionary];
             NSString *locationVersion= [infoDic objectForKey:@"CFBundleShortVersionString"];
             NSString*  romoteVersion=resultVersionModel.version;
-            
-//            NSError *parseError = nil;
-//            
-//            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:appVersionDic options:NSJSONWritingPrettyPrinted error:&parseError];
-//            NSLog(@"%@",[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
-            
             float loc=[locationVersion floatValue];
             float rom=[romoteVersion floatValue];
             
@@ -98,14 +101,14 @@ static FBDAppUpdateVersionTool *appSinTan;
                 NSString*tipMSG=@"我们梅斯医学APP有新的版本要更新了,为了更好的提升您的用户体验，请前往AppStore下载最新的版本！";
                 if (self.showReleaseNote&&resultVersionModel.releaseNotes)
                 {
-                    tipMSG=resultVersionModel.releaseNotes; //提示更新的内容  
+                    tipMSG=resultVersionModel.releaseNotes; //提示更新的内容
                 }
                 appSinTan->alertUpdateView=[[UIAlertView alloc]initWithTitle:@"有新版本更新温馨提示" message:nil  delegate:appSinTan
                                                            cancelButtonTitle:@"更新" otherButtonTitles:@"取消", nil];
                 tipMSG=[tipMSG stringByAppendingString:@"\n"];
                 UILabel*textLabel= [self getAppUpdateMsgLabelWithMSG:tipMSG];
                 [appSinTan->alertUpdateView setValue:textLabel forKey:@"accessoryView"];
-            //[appSinTan->alertUpdateView show];
+                //[appSinTan->alertUpdateView show];
                 
                 popTipView=[[FBDAppUpdatePopView alloc]initWithFrame:[UIScreen mainScreen].bounds];
                 popTipView.comeContent=tipMSG;
@@ -118,16 +121,82 @@ static FBDAppUpdateVersionTool *appSinTan;
                     {
                         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:appStorePath]];
                     }
-
+                    
                 }];
-            
-                
-                
-                
+
             }
-        } failureBlock:^(NSString *error, id obj) {
+                }];
+        
+        [_myTask  resume];
+   
+        
+ /***************下面是为了不引入AFNetWorking我们做了上面原生的网络请求 cocopod就可以不添加依赖库了*********************/
+  /*
+   NSArray *allArray=[obj objectForKey:resultsKey];
+   NSDictionary* appVersionDic=[allArray firstObject];
+   AppVersionModel*resultVersionModel=[[AppVersionModel alloc]initWithDictionary:appVersionDic];
+   NSLog(@"线上版本的Version是：%@",resultVersionModel.version);
+
+        
+        //    当前的版本
+        NSDictionary *infoDic=[[NSBundle mainBundle]infoDictionary];
+        NSString *locationVersion= [infoDic objectForKey:@"CFBundleShortVersionString"];
+        NSString*  romoteVersion=resultVersionModel.version;
+        
+        //            NSError *parseError = nil;
+        //
+        //            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:appVersionDic options:NSJSONWritingPrettyPrinted error:&parseError];
+        //            NSLog(@"%@",[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
+        
+        float loc=[locationVersion floatValue];
+        float rom=[romoteVersion floatValue];
+        
+        if (loc>=rom)
+        { //不弹出提示窗
             
-        }];
+            
+        }
+        else
+        { //弹出提示窗
+            NSString*tipMSG=@"我们梅斯医学APP有新的版本要更新了,为了更好的提升您的用户体验，请前往AppStore下载最新的版本！";
+            if (self.showReleaseNote&&resultVersionModel.releaseNotes)
+            {
+                tipMSG=resultVersionModel.releaseNotes; //提示更新的内容
+            }
+            appSinTan->alertUpdateView=[[UIAlertView alloc]initWithTitle:@"有新版本更新温馨提示" message:nil  delegate:appSinTan
+                                                       cancelButtonTitle:@"更新" otherButtonTitles:@"取消", nil];
+            tipMSG=[tipMSG stringByAppendingString:@"\n"];
+            UILabel*textLabel= [self getAppUpdateMsgLabelWithMSG:tipMSG];
+            [appSinTan->alertUpdateView setValue:textLabel forKey:@"accessoryView"];
+            //[appSinTan->alertUpdateView show];
+            
+            popTipView=[[FBDAppUpdatePopView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+            popTipView.comeContent=tipMSG;
+            if (self.tipPopView)
+            {
+                popTipView.popView=self.tipPopView;
+            }
+            [popTipView showUpdateViewInWindowAppUpdateButtonBlock:^{
+                if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:appStorePath]])
+                {
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:appStorePath]];
+                }
+                
+            }];
+            
+            
+            
+            
+        }
+
+   */
+        /*
+         PS：对上面的code进行逻辑声明
+         理论依据： 线上版本大于本地版本号 就是要更新app了 弹出提示框
+         第一种情况： 苹果审核的时候由于审核的版本号大于线上的，也就是线上版本号小于本地的版本号，所以就不会弹出提示框
+         */
+        
+        
     });
     
     
