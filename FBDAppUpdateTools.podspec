@@ -21,8 +21,8 @@ Pod::Spec.new do |s|
   #  non-essential files like tests, examples and documentation.
   #
 
-   s.resource  = "Resources/*.png"
-  #s.resources = "Resources/*.png"
+  # s.resource  = "Resources/*.png"
+  s.resources = "Resources/*.png","Resources/*.jpg"
   s.requires_arc = true
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

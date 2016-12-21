@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Header.h"
 @interface FBDAppUpdateVersionTool : NSObject
 //static NSString* appVersionURL=@"https://itunes.apple.com/cn/lookup?id=1012163770";
 //static NSString* appStorePath=@"https://itunes.apple.com/cn/app/id1012163770?mt=8";
