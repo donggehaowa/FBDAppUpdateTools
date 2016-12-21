@@ -15,9 +15,9 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "FBDAppUpdateTools"
+  s.name         = "FBD_AppUpdateTool"
   s.version      = "0.1"
-  s.summary      = "FBDAppUpdateTools 是根据自己的APP在AppStore的版本信息和本地版本信息进行匹配后作出让用户去AppStore进行相关的更细的界面，目的为了更好的节省开发时间！解释权归冯宝东所有，如果涉及到版权信息，联系我删除代码 "
+  s.summary      = "FBD_AppUpdateTool 是根据自己的APP在AppStore的版本信息和本地版本信息进行匹配后作出让用户去AppStore进行相关的更细的界面，目的为了更好的节省开发时间！解释权归冯宝东所有，如果涉及到版权信息，联系我删除代码 "
   s.homepage     = "https://github.com/donggehaowa/FBDAppUpdateTools"
 
   # This description is used to generate tags and improve search results.
