@@ -11,9 +11,9 @@
 #import <FBDTools/ShowAlertTool.h>
 #import <CoreText/CoreText.h>
 #import "FBDAppUpdatePopView.h"
-static NSString* appVersionURL=@"https://itunes.apple.com/cn/lookup?id=1012163770";
-static NSString* appStorePath=@"https://itunes.apple.com/cn/app/id1012163770?mt=8";
-static NSString* resultsKey=@"results";
+NSString* appVersionURL=@"https://itunes.apple.com/cn/lookup?id=1012163770";
+NSString* appStorePath=@"https://itunes.apple.com/cn/app/id1012163770?mt=8";
+NSString* resultsKey=@"results";
 
 static FBDAppUpdateVersionTool *appSinTan;
 @interface FBDAppUpdateVersionTool ()<UIAlertViewDelegate>

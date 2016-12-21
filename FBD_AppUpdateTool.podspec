@@ -78,7 +78,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
- s.source       = { :git => "https://github.com/donggehaowa/FBDAppUpdateTools.git", :tag => "#{s.version}" }
+    s.source = { :git => "https://github.com/donggehaowa/FBDAppUpdateTools.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -90,8 +90,6 @@ Pod::Spec.new do |s|
   #
 
   s.source_files  = "FBDAppUpdateToolsClass/*.{h,m}"
-
-
   # s.public_header_files = "Classes/**/*.h"
 
 
@@ -106,9 +104,6 @@ Pod::Spec.new do |s|
    s.resource  = "Resources/*"
   # s.resources = "Resources/*.png"
 
-  # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
-
-
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  Link your library with frameworks, or libraries. Libraries do not include
@@ -118,8 +113,6 @@ Pod::Spec.new do |s|
   # s.framework  = "SomeFramework"
    s.frameworks = "UIKit", "CoreText"
 
-  # s.library   = "iconv"
-  # s.libraries = "iconv", "xml2"
 
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -130,7 +123,6 @@ Pod::Spec.new do |s|
 
    s.requires_arc = true
 
-  # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
+
 
 end
