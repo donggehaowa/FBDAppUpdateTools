@@ -37,9 +37,9 @@ static FBDAppUpdateVersionTool *appSinTan;
  */
 +(void)appAutoUpdateVersionAfterDelaySecond:(NSInteger)delaySecond
 {
-   // dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delaySecond * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delaySecond * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self appAutoUpdateVersion];
-    //});
+    });
 }
 
 /**
@@ -54,8 +54,8 @@ static FBDAppUpdateVersionTool *appSinTan;
  */
 -(void)appAutoUpdateVersion
 {
-    //dispatch_queue_t indexQueue =dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    //dispatch_async(indexQueue, ^{
+    dispatch_queue_t indexQueue =dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(indexQueue, ^{
         if (self.m_appVersionURL)
         {
             appVersionURL=self.m_appVersionURL;
@@ -196,7 +196,7 @@ static FBDAppUpdateVersionTool *appSinTan;
          */
         
         
-    //});
+    });
     
     
 }
