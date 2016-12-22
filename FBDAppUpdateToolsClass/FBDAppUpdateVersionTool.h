@@ -17,7 +17,7 @@
 @property (nonatomic,assign)BOOL showReleaseNote;
 
 //供其他开发者重写tipView UI上面的Control 需要自己写控制逻辑
-@property (nonatomic,readwrite,strong)UIView*tipPopView;
+@property (nonatomic,strong)UIView*tipPopView;
 
 /**
  创建单例类

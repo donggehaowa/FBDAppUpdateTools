@@ -10,9 +10,9 @@
 #import "AppVersionModel.h"
 #import <CoreText/CoreText.h>
 #import "FBDAppUpdatePopView.h"
-static NSString* appVersionURL=@"https://itunes.apple.com/cn/lookup?id=1012163770";
-static NSString* appStorePath=@"https://itunes.apple.com/cn/app/id1012163770?mt=8";
-static NSString* resultsKey=@"results";
+NSString* appVersionURL=@"https://itunes.apple.com/cn/lookup?id=1012163770";
+NSString* appStorePath=@"https://itunes.apple.com/cn/app/id1012163770?mt=8";
+NSString* resultsKey=@"results";
 
 static FBDAppUpdateVersionTool *appSinTan;
 @interface FBDAppUpdateVersionTool ()<UIAlertViewDelegate>
@@ -37,9 +37,9 @@ static FBDAppUpdateVersionTool *appSinTan;
  */
 +(void)appAutoUpdateVersionAfterDelaySecond:(NSInteger)delaySecond
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delaySecond * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+   // dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delaySecond * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self appAutoUpdateVersion];
-    });
+    //});
 }
 
 /**
@@ -54,8 +54,8 @@ static FBDAppUpdateVersionTool *appSinTan;
  */
 -(void)appAutoUpdateVersion
 {
-    dispatch_queue_t indexQueue =dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(indexQueue, ^{
+    //dispatch_queue_t indexQueue =dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    //dispatch_async(indexQueue, ^{
         if (self.m_appVersionURL)
         {
             appVersionURL=self.m_appVersionURL;
@@ -196,7 +196,7 @@ static FBDAppUpdateVersionTool *appSinTan;
          */
         
         
-    });
+    //});
     
     
 }
